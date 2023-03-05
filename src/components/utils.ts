@@ -1,3 +1,5 @@
+import { Response } from "./types";
+
 export async function sendRequest(inputValue: string) {
   const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
   const data = {
@@ -15,6 +17,6 @@ export async function sendRequest(inputValue: string) {
   return response.json();
 }
 
-export async function handleResponse(response: any) {
+export async function handleResponse(response: Response) {
   return response.choices[0].message.content;
 }
