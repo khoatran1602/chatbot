@@ -13,9 +13,9 @@ const ChatApp = () => {
   const [isResponseCopied, setIsResponseCopied] =
     useState<State["isResponseCopied"]>(false);
   const [userInputHeight, setUserInputHeight] =
-    useState<State["userInputHeight"]>(0);
+    useState<State["userInputHeight"]>(50);
   const [chatbotResponseHeight, setChatbotResponseHeight] =
-    useState<State["chatbotResponseHeight"]>(0);
+    useState<State["chatbotResponseHeight"]>(50);
 
   const userInputTextareaRef = useRef<HTMLTextAreaElement>(null);
   const chatbotResponseTextareaRef = useRef<HTMLTextAreaElement>(null);
@@ -32,14 +32,19 @@ const ChatApp = () => {
 
   // create an async function called generateResponse
   const generateResponse = async () => {
-    setUserInput("");
+    if (sidebarProp !== null) {
+      setSidebarProp("");
+    } else {
+      setUserInput("");
+    }
     try {
       // make a request using the userInput and wait for the response
-      const response = await sendRequest(userInput);
+      const response = await sendRequest(sidebarProp ? sidebarProp : userInput);
       // handle the response and wait for the message content
       const messageContent = await handleResponse(response);
       // set the chatbot response to the message content
       setChatbotResponse(messageContent);
+      console.log(response);
     } catch (error) {
       // if there's an error, log it and set the chatbot response to an error message
       console.log(error);
