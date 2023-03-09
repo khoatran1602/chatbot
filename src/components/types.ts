@@ -13,7 +13,7 @@ export interface ChatResponseProps {
   chatbotResponseTextareaRef: React.RefObject<HTMLTextAreaElement>;
   chatbotResponseHeight: number;
   isResponseCopied: boolean;
-  copy: () => Promise<void>;
+  copy: () => void;
 }
 
 export interface ChatInputProps {
@@ -23,6 +23,10 @@ export interface ChatInputProps {
   userInputTextareaRef: MutableRefObject<HTMLTextAreaElement | null>;
   userInputHeight: number;
   sidebarProp?: string;
+}
+
+export interface CodeBlockProps {
+  code?: string | null;
 }
 
 export interface Response {

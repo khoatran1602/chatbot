@@ -24,3 +24,19 @@ export async function handleResponse(response: Response) {
 export function getRandomKey(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+export function findCodeInSentence(sentence: string): string | null {
+  // Regular expression to match a code block
+  const codeRegex = /```[\s\S]*?```/g;
+
+  // Search for the first code block in the sentence
+  const match = sentence.match(codeRegex);
+
+  // If a code block was found, return it
+  if (match && match.length > 0) {
+    return match[0];
+  }
+
+  // Otherwise, return null
+  return null;
+}

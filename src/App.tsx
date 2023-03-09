@@ -13,9 +13,9 @@ const ChatApp = () => {
   const [isResponseCopied, setIsResponseCopied] =
     useState<State["isResponseCopied"]>(false);
   const [userInputHeight, setUserInputHeight] =
-    useState<State["userInputHeight"]>(50);
+    useState<State["userInputHeight"]>(0);
   const [chatbotResponseHeight, setChatbotResponseHeight] =
-    useState<State["chatbotResponseHeight"]>(50);
+    useState<State["chatbotResponseHeight"]>(0);
 
   const userInputTextareaRef = useRef<HTMLTextAreaElement>(null);
   const chatbotResponseTextareaRef = useRef<HTMLTextAreaElement>(null);
@@ -44,7 +44,6 @@ const ChatApp = () => {
       const messageContent = await handleResponse(response);
       // set the chatbot response to the message content
       setChatbotResponse(messageContent);
-      console.log(response);
     } catch (error) {
       // if there's an error, log it and set the chatbot response to an error message
       console.log(error);
@@ -54,37 +53,58 @@ const ChatApp = () => {
 
   const copy = useCallback(async () => {
     try {
-      if (chatbotResponseTextareaRef.current) {
-        await navigator.clipboard.writeText(
-          chatbotResponseTextareaRef.current.value
-        );
+      if (chatbotResponse) {
+        navigator.clipboard.writeText(chatbotResponse);
         setIsResponseCopied(true);
       }
     } catch (error) {
       console.log(error);
       setIsResponseCopied(false);
     }
-  }, []);
+  }, [chatbotResponse]);
+
+  // useEffect(() => {
+  //   const textarea = userInputTextareaRef.current;
+  //   if (textarea) {
+  //     setUserInputHeight(textarea.scrollHeight);
+  //   }
+  // }, [userInput]);
+
+  // useEffect(() => {
+  //   if (userInput === "" || sidebarProp === "") {
+  //     setUserInputHeight(50);
+  //   }
+  // }, [userInput]);
+
+  // useEffect(() => {
+  //   const textarea = chatbotResponseTextareaRef.current;
+  //   if (textarea) {
+  //     setChatbotResponseHeight(textarea.scrollHeight);
+  //   }
+  // }, [chatbotResponse]);
 
   useEffect(() => {
-    const textarea = userInputTextareaRef.current;
-    if (textarea) {
-      setUserInputHeight(textarea.scrollHeight);
+    const userInputTextarea = userInputTextareaRef.current;
+    const chatbotResponseTextarea = chatbotResponseTextareaRef.current;
+
+    if (userInputTextarea) {
+      setUserInputHeight(userInputTextarea.scrollHeight);
     }
-  }, [userInput]);
 
-  useEffect(() => {
-    if (userInput === "") {
+    if (chatbotResponseTextarea) {
+      setChatbotResponseHeight(chatbotResponseTextarea.scrollHeight);
+    }
+
+    if (userInput === "" || sidebarProp === "") {
       setUserInputHeight(30);
     }
-  }, [userInput]);
-
-  useEffect(() => {
-    const textarea = chatbotResponseTextareaRef.current;
-    if (textarea) {
-      setChatbotResponseHeight(textarea.scrollHeight);
-    }
-  }, [chatbotResponse]);
+  }, [
+    userInput,
+    sidebarProp,
+    userInputTextareaRef,
+    chatbotResponseTextareaRef,
+    chatbotResponse,
+  ]);
 
   return (
     <div className="flex flex-row">
