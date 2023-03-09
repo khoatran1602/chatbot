@@ -20,3 +20,7 @@ export async function sendRequest(inputValue: string) {
 export async function handleResponse(response: Response) {
   return response.choices[0].message.content;
 }
+
+export function getRandomKey(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}

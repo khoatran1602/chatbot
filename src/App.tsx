@@ -1,8 +1,9 @@
-import { useState, useRef, useEffect, useCallback, ChangeEvent } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { State } from "./components/types";
 import ChatResponse from "./components/ChatResponse/ChatResponse";
 import ChatInput from "./components/ChatInput/ChatInput";
 import { handleResponse, sendRequest } from "./components/utils";
+import { SideBar } from "./components/SideBar/SideBar";
 
 const ChatApp = () => {
   const [userInput, setUserInput] = useState<State["userInput"]>("");
@@ -11,7 +12,7 @@ const ChatApp = () => {
   const [isResponseCopied, setIsResponseCopied] =
     useState<State["isResponseCopied"]>(false);
   const [userInputHeight, setUserInputHeight] =
-    useState<State["userInputHeight"]>(50);
+    useState<State["userInputHeight"]>(0);
   const [chatbotResponseHeight, setChatbotResponseHeight] =
     useState<State["chatbotResponseHeight"]>(0);
 
@@ -25,6 +26,7 @@ const ChatApp = () => {
 
   // create an async function called generateResponse
   const generateResponse = async () => {
+    setUserInput("");
     try {
       // make a request using the userInput and wait for the response
       const response = await sendRequest(userInput);
@@ -36,9 +38,6 @@ const ChatApp = () => {
       // if there's an error, log it and set the chatbot response to an error message
       console.log(error);
       setChatbotResponse("Oops! Something went wrong. Please try again.");
-    } finally {
-      // clear the userInput field
-      setUserInput("");
     }
   };
 
@@ -65,7 +64,7 @@ const ChatApp = () => {
 
   useEffect(() => {
     if (userInput === "") {
-      setUserInputHeight(40);
+      setUserInputHeight(30);
     }
   }, [userInput]);
 
@@ -77,24 +76,30 @@ const ChatApp = () => {
   }, [chatbotResponse]);
 
   return (
-    <div>
-      {chatbotResponse && (
-        <ChatResponse
-          chatbotResponse={chatbotResponse}
-          chatbotResponseTextareaRef={chatbotResponseTextareaRef}
-          chatbotResponseHeight={chatbotResponseHeight}
-          isResponseCopied={isResponseCopied}
-          copy={copy}
-        />
-      )}
+    <div className="flex flex-row">
+      <div className="bg-[#141620] text-white w-1/6 h-screen">
+        <SideBar />
+      </div>
 
-      <ChatInput
-        userInput={userInput}
-        handleInputChange={handleInputChange}
-        generateResponse={generateResponse}
-        userInputTextareaRef={userInputTextareaRef}
-        userInputHeight={userInputHeight}
-      />
+      <div className="flex flex-col">
+        {chatbotResponse && (
+          <ChatResponse
+            chatbotResponse={chatbotResponse}
+            chatbotResponseTextareaRef={chatbotResponseTextareaRef}
+            chatbotResponseHeight={chatbotResponseHeight}
+            isResponseCopied={isResponseCopied}
+            copy={copy}
+          />
+        )}
+
+        <ChatInput
+          userInput={userInput}
+          handleInputChange={handleInputChange}
+          generateResponse={generateResponse}
+          userInputTextareaRef={userInputTextareaRef}
+          userInputHeight={userInputHeight}
+        />
+      </div>
     </div>
   );
 };

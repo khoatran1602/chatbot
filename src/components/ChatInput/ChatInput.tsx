@@ -14,7 +14,7 @@ const ChatInput = ({
     <div className="bg-black w-3/4 rounded-lg absolute bottom-0 ml-20 mb-5 flex items-center">
       <textarea
         ref={userInputTextareaRef}
-        className="bg-[#444654] rounded-lg resize-none overflow-y-auto w-full pl-3 pt-3 pb-3 max-h-60"
+        className="bg-[#444654] rounded-lg overflow-y-auto w-full max-h-60 pt-1 py-1 font-semibold"
         value={userInput}
         onChange={handleInputChange}
         style={{ height: `${userInputHeight}px` }}

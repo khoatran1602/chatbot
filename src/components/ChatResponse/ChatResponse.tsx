@@ -14,7 +14,7 @@ const ChatResponse = ({
   const SUCCESS_ICON = <IoMdCloudDone size={25} />;
 
   return (
-    <div className="flex justify-center items-center flex-col">
+    <div className="flex justify-center items-center flex-col ml-20">
       <button
         onClick={copy}
         className="bg-[#10A37F] hover:bg-[#10C17F] rounded-lg px-4 py-2 focus:outline-none my-5"
@@ -23,7 +23,7 @@ const ChatResponse = ({
       </button>
       <div
         ref={chatbotResponseTextareaRef as unknown as RefObject<HTMLDivElement>}
-        className="bg-[#444654] rounded-lg w-full overflow-y-auto max-h-[450px] pl-5 pt-3"
+        className="bg-[#444654] rounded-lg w-full overflow-y-auto max-h-[450px] pl-5 pr-5 pt-1"
         contentEditable={false}
         style={{ height: `${chatbotResponseHeight}px` }}
       >
