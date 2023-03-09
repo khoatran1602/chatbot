@@ -22,6 +22,7 @@ export interface ChatInputProps {
   generateResponse: () => void;
   userInputTextareaRef: MutableRefObject<HTMLTextAreaElement | null>;
   userInputHeight: number;
+  sidebarProp?: string;
 }
 
 export interface Response {

@@ -6,6 +6,7 @@ import { handleResponse, sendRequest } from "./components/utils";
 import { SideBar } from "./components/SideBar/SideBar";
 
 const ChatApp = () => {
+  const [sidebarProp, setSidebarProp] = useState<string>("");
   const [userInput, setUserInput] = useState<State["userInput"]>("");
   const [chatbotResponse, setChatbotResponse] =
     useState<State["chatbotResponse"]>("");
@@ -20,7 +21,12 @@ const ChatApp = () => {
   const chatbotResponseTextareaRef = useRef<HTMLTextAreaElement>(null);
 
   function handleInputChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
-    setUserInput(event.target.value);
+    const value = event.target.value;
+    if (sidebarProp !== null) {
+      setSidebarProp(value);
+    } else {
+      setUserInput(value);
+    }
     setIsResponseCopied(false);
   }
 
@@ -78,7 +84,7 @@ const ChatApp = () => {
   return (
     <div className="flex flex-row">
       <div className="bg-[#141620] text-white w-1/6 h-screen">
-        <SideBar />
+        <SideBar setSidebarProp={setSidebarProp} />
       </div>
 
       <div className="flex flex-col">
@@ -93,11 +99,12 @@ const ChatApp = () => {
         )}
 
         <ChatInput
-          userInput={userInput}
+          userInput={sidebarProp ? sidebarProp : ""}
           handleInputChange={handleInputChange}
           generateResponse={generateResponse}
           userInputTextareaRef={userInputTextareaRef}
           userInputHeight={userInputHeight}
+          sidebarProp={sidebarProp}
         />
       </div>
     </div>
