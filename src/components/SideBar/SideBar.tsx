@@ -6,6 +6,7 @@ import DialogContent from "@mui/material/DialogContent";
 import TextField from "@mui/material/TextField";
 import { getRandomKey } from "../utils";
 import { AiTwotoneDelete } from "react-icons/ai";
+import { DialogContentText } from "@mui/material";
 
 export const SideBar = () => {
   const [open, setOpen] = useState(false);
@@ -58,11 +59,13 @@ export const SideBar = () => {
           <TextField
             autoFocus
             margin="dense"
-            id="name"
+            id="outlined-multiline-flexible"
             label="Enter Your Prompt"
             type="text"
             fullWidth
-            variant="standard"
+            multiline
+            maxRows={4}
+            variant="outlined"
             onChange={(event) => setPrompt(event.target.value)}
           />
         </DialogContent>
