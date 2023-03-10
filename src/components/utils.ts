@@ -1,7 +1,10 @@
 import { Response } from "./types";
 
+export const API_KEY = "api_key";
+
 export async function sendRequest(inputValue: string) {
-  const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
+  const apiKey = localStorage.getItem(API_KEY);
+  const OPENAI_API_KEY = apiKey;
   const data = {
     model: "gpt-3.5-turbo",
     messages: [{ role: "user", content: inputValue }],

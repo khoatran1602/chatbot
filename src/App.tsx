@@ -4,6 +4,7 @@ import ChatResponse from "./components/ChatResponse/ChatResponse";
 import ChatInput from "./components/ChatInput/ChatInput";
 import { handleResponse, sendRequest } from "./components/utils";
 import { SideBar } from "./components/SideBar/SideBar";
+import { APIKey } from "./components/APIKey/APIKey";
 
 const ChatApp = () => {
   const [sidebarProp, setSidebarProp] = useState<string>("");
@@ -112,7 +113,7 @@ const ChatApp = () => {
         <SideBar setSidebarProp={setSidebarProp} />
       </div>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col h-screen">
         {chatbotResponse && (
           <ChatResponse
             chatbotResponse={chatbotResponse}
@@ -122,7 +123,6 @@ const ChatApp = () => {
             copy={copy}
           />
         )}
-
         <ChatInput
           userInput={sidebarProp ? sidebarProp : ""}
           handleInputChange={handleInputChange}

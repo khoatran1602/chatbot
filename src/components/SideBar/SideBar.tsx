@@ -1,12 +1,8 @@
-import Button from "@mui/material/Button";
 import { useEffect, useState } from "react";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import TextField from "@mui/material/TextField";
-import { getRandomKey } from "../utils";
+import { API_KEY, getRandomKey } from "../utils";
 import { AiTwotoneDelete } from "react-icons/ai";
-import { DialogContentText } from "@mui/material";
+import { APIKey } from "../APIKey/APIKey";
+import { ImportPrompt } from "../ImportPrompt/ImportPrompt";
 
 export const SideBar = ({
   setSidebarProp,
@@ -18,7 +14,9 @@ export const SideBar = ({
   const [usedPrompts, setUsedPrompts] = useState<string[]>([]);
 
   useEffect(() => {
-    const storedPrompts = Object.values(localStorage);
+    const storedPrompts = Object.entries(localStorage)
+      .filter(([key]) => key !== API_KEY)
+      .map(([_, value]) => value);
     setUsedPrompts(storedPrompts);
   }, [localStorage]);
 
@@ -49,39 +47,10 @@ export const SideBar = ({
 
   return (
     <div className="flex flex-col items-center">
-      <Button
-        variant="contained"
-        sx={{
-          bgcolor: "#10A37F",
-          "&:hover": {
-            bgcolor: "#10C17F",
-          },
-        }}
-        onClick={handleClickOpen}
-        style={{ marginTop: "16px" }}
-      >
-        Add Prompt
-      </Button>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="outlined-multiline-flexible"
-            label="Enter Your Prompt"
-            type="text"
-            fullWidth
-            multiline
-            maxRows={4}
-            variant="outlined"
-            onChange={(event) => setPrompt(event.target.value)}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleAdd}>Add</Button>
-        </DialogActions>
-      </Dialog>
+      <div className="flex flex-row items-center">
+        <ImportPrompt />
+        <APIKey />
+      </div>
       <ul className="flex flex-col">
         {usedPrompts.map((prompt, index) => (
           <div className="flex flex-row">
