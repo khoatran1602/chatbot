@@ -3,6 +3,6 @@
 VITE_OPENAI_API_KEY=yourAPIkey
 
 ## Run
-npx vite
+npx vite || yarn vite
 
 That's it, guys. Keep it simple!
