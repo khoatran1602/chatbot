@@ -4,7 +4,6 @@ import ChatResponse from "./components/ChatResponse/ChatResponse";
 import ChatInput from "./components/ChatInput/ChatInput";
 import { handleResponse, sendRequest } from "./components/utils";
 import { SideBar } from "./components/SideBar/SideBar";
-import { APIKey } from "./components/APIKey/APIKey";
 
 const ChatApp = () => {
   const [sidebarProp, setSidebarProp] = useState<string>("");
@@ -43,6 +42,7 @@ const ChatApp = () => {
       const response = await sendRequest(sidebarProp ? sidebarProp : userInput);
       // handle the response and wait for the message content
       const messageContent = await handleResponse(response);
+      console.log(JSON.stringify(messageContent));
       // set the chatbot response to the message content
       setChatbotResponse(messageContent);
     } catch (error) {

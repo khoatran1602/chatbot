@@ -43,3 +43,20 @@ export function findCodeInSentence(sentence: string): string | null {
   // Otherwise, return null
   return null;
 }
+
+export function findListInSentence(sentence: string): string | null {
+  // Regular expression to match a code block
+  const listRegex = /^(\n\n).*\.$/s;
+  // const listRegex = /(?:\n\n|\n-)(?!```)(.*?)\.(?!\n\n|\n-)/gs;
+
+  // Search for the first code block in the sentence
+  const match = sentence.match(listRegex);
+
+  // If a code block was found, return it
+  if (match && match.length > 0) {
+    return match[0];
+  }
+
+  // Otherwise, return null
+  return null;
+}

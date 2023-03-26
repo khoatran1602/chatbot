@@ -29,6 +29,10 @@ export interface CodeBlockProps {
   code?: string | null;
 }
 
+export interface ListBlockProps {
+  list?: string | null;
+}
+
 export interface Response {
   id: string;
   object: string;
