@@ -5,8 +5,10 @@ export const API_KEY = "api_key";
 export async function sendRequest(inputValue: string) {
   const apiKey = localStorage.getItem(API_KEY);
   const OPENAI_API_KEY = apiKey;
+  const MODEL_3 = "gpt-3.4-turbo";
+  const MODEL_4 = "gpt-4";
   const data = {
-    model: "gpt-3.5-turbo",
+    model: MODEL_4,
     messages: [{ role: "user", content: inputValue }],
   };
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
