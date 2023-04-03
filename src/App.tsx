@@ -19,6 +19,7 @@ const ChatApp = () => {
 
   const userInputTextareaRef = useRef<HTMLTextAreaElement>(null);
   const chatbotResponseTextareaRef = useRef<HTMLTextAreaElement>(null);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   function handleInputChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
     const value = event.target.value;
@@ -64,25 +65,13 @@ const ChatApp = () => {
     }
   }, [chatbotResponse]);
 
-  // useEffect(() => {
-  //   const textarea = userInputTextareaRef.current;
-  //   if (textarea) {
-  //     setUserInputHeight(textarea.scrollHeight);
-  //   }
-  // }, [userInput]);
-
-  // useEffect(() => {
-  //   if (userInput === "" || sidebarProp === "") {
-  //     setUserInputHeight(50);
-  //   }
-  // }, [userInput]);
-
-  // useEffect(() => {
-  //   const textarea = chatbotResponseTextareaRef.current;
-  //   if (textarea) {
-  //     setChatbotResponseHeight(textarea.scrollHeight);
-  //   }
-  // }, [chatbotResponse]);
+  useEffect(() => {
+    function handleResize() {
+      setScreenWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const userInputTextarea = userInputTextareaRef.current;
@@ -109,8 +98,12 @@ const ChatApp = () => {
 
   return (
     <div className="flex flex-row">
-      <div className="bg-[#141620] text-white w-1/6 h-screen">
-        <SideBar setSidebarProp={setSidebarProp} />
+      <div
+        className={`bg-[#141620] text-white h-screen ${
+          screenWidth > 720 ? "w-1/6" : ""
+        }`}
+      >
+        <SideBar setSidebarProp={setSidebarProp} screenWidth={screenWidth} />
       </div>
 
       <div className="flex flex-col h-screen">
