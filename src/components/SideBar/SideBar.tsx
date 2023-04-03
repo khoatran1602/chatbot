@@ -6,8 +6,10 @@ import { ImportPrompt } from "../ImportPrompt/ImportPrompt";
 
 export const SideBar = ({
   setSidebarProp,
+  screenWidth,
 }: {
   setSidebarProp: (value: string) => void;
+  screenWidth: number;
 }) => {
   const [usedPrompts, setUsedPrompts] = useState<string[]>([]);
   const apiKey = localStorage.getItem(API_KEY) || "";
@@ -55,7 +57,9 @@ export const SideBar = ({
           .map((prompt, index) => (
             <div className="flex flex-row" key={index}>
               <button
-                className="text-center mt-5 rounded hover:bg-[#14c498] p-2 w-60 truncate"
+                className={`text-center mt-5 rounded hover:bg-[#14c498] p-2 truncate ${
+                  screenWidth > 480 ? "w-48" : "w-20"
+                }`}
                 onClick={() => handleSidebarClick(prompt)}
               >
                 {prompt}
