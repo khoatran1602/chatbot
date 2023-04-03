@@ -28,10 +28,10 @@ const ChatInput = ({
   }, [userInput, sidebarProp, userInputTextareaRef]);
 
   return (
-    <div className="bg-black w-3/4 rounded-lg absolute bottom-0 ml-20 mb-5 flex items-center outline-none">
+    <div className="bg-black w-3/4 rounded-lg absolute bottom-0 mb-5 flex items-center outline-none">
       <textarea
         ref={userInputTextareaRef}
-        className="bg-[#444654] rounded-lg overflow-y-auto w-full max-h-60 pt-1 py-1 pl-2 font-semibold"
+        className="bg-[#444654] rounded-lg overflow-y-auto w-full max-h-60 pt-1 py-1 pl-2 font-semibold ml-20"
         value={userInput}
         onChange={handleInputChange}
         style={{ height: `${userInputHeight}px` }}
