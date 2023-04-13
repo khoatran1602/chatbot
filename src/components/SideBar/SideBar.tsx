@@ -3,14 +3,9 @@ import { API_KEY, getRandomKey } from "../utils";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { APIKey } from "../APIKey/APIKey";
 import { ImportPrompt } from "../ImportPrompt/ImportPrompt";
+import { SidebarProps } from "../types";
 
-export const SideBar = ({
-  setSidebarProp,
-  screenWidth,
-}: {
-  setSidebarProp: (value: string) => void;
-  screenWidth: number;
-}) => {
+export const SideBar = ({ setSidebarProp, screenWidth }: SidebarProps) => {
   const [usedPrompts, setUsedPrompts] = useState<string[]>([]);
   const apiKey = localStorage.getItem(API_KEY) || "";
 

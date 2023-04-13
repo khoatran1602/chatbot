@@ -33,6 +33,11 @@ export interface ListBlockProps {
   list?: string | null;
 }
 
+export interface SidebarProps {
+  setSidebarProp: (value: string) => void;
+  screenWidth: number;
+}
+
 export interface Response {
   id: string;
   object: string;
