@@ -139,23 +139,15 @@ const ChatApp = () => {
   ]);
 
   return (
-    <div className="flex flex-row">
-      <div
-        className={`bg-[#141620] text-white h-screen ${
-          screenWidth > 720 ? "w-1/6" : ""
-        }`}
-      >
-        <SideBar setSidebarProp={setSidebarProp} screenWidth={screenWidth} />
-      </div>
-
-      <div className="flex flex-col h-screen w-full bg-[#1a1b26] overflow-auto">
+    <div className="flex flex-col h-screen w-full bg-[#1a1b26] overflow-hidden relative">
+      <div className="flex flex-col h-full w-full max-w-7xl mx-auto relative z-10">
         {/* Mode Toggle */}
-        <div className="flex items-center gap-4 p-4 border-b border-gray-700">
+        <div className="flex items-center gap-4 p-4 border-b border-gray-700/50 backdrop-blur-sm sticky top-0 bg-[#1a1b26]/90 z-50">
           <span className="text-white text-sm font-medium">Mode:</span>
           <button
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
               chatMode === 'debate'
-                ? 'bg-[#10A37F] text-white'
+                ? 'bg-[#10A37F] text-white shadow-lg shadow-emerald-900/20'
                 : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
             }`}
             onClick={() => setChatMode('debate')}
@@ -170,18 +162,18 @@ const ChatApp = () => {
             }`}
             onClick={() => setChatMode('simple')}
           >
-            💬 Simple Chat (Legacy)
+            💬 Legacy Chat
           </button>
           
           {chatMode === 'debate' && (
-            <span className="ml-auto text-xs text-green-400 flex items-center gap-1">
+            <span className="ml-auto text-xs text-emerald-400 flex items-center gap-1 font-mono bg-emerald-900/20 px-2 py-1 rounded">
               🔒 Secure - API keys server-side
             </span>
           )}
         </div>
 
         {/* Response Area */}
-        <div className="flex-1 overflow-auto p-4">
+        <div className="flex-1 overflow-y-auto overflow-x-hidden p-4 pb-32">
           {chatMode === 'debate' ? (
             <DebateView
               debate={debateResponse}

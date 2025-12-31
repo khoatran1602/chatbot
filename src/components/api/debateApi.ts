@@ -24,7 +24,13 @@ export async function executeDebate(request: DebateRequest): Promise<DebateRespo
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
-    throw new Error(errorData.message || `Request failed with status ${response.status}`);
+    
+    // Check for validation details
+    if (errorData.details && Array.isArray(errorData.details)) {
+       throw new Error(errorData.details.join(', '));
+    }
+
+    throw new Error(errorData.message || errorData.error || `Request failed with status ${response.status}`);
   }
 
   return response.json();

@@ -67,8 +67,37 @@ const DebateView = ({ debate, isLoading, error }: DebateViewProps) => {
     );
   }
 
-  // No debate yet
-  if (!debate) return null;
+  // No debate yet (Welcome State)
+  if (!debate) {
+    return (
+      <div className="arena-welcome">
+        <div className="welcome-content">
+          <div className="vs-logo">VS</div>
+          <h1 className="welcome-title">The Debate Arena</h1>
+          <p className="welcome-subtitle">
+            Two AI Agents. One Judge. Absolute Truth.
+          </p>
+          <div className="welcome-features">
+            <div className="feature">
+              <span className="icon">🤖</span>
+              <span>Autonomous Agents</span>
+            </div>
+            <div className="feature">
+              <span className="icon">⚔️</span>
+              <span>Cross-Examination</span>
+            </div>
+            <div className="feature">
+              <span className="icon">⚖️</span>
+              <span>Impartial Justice</span>
+            </div>
+          </div>
+          <p className="welcome-instruction">
+            Enter your topic below to begin the match.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   // Failed debate
   if (!debate.success) {
@@ -161,7 +190,7 @@ const DebateView = ({ debate, isLoading, error }: DebateViewProps) => {
             {/* ROUND 2: Cross Examination */}
             <div className="stage-round">
               <div className="round-label">ROUND 2: CROSS EXAMINATION</div>
-              <div className="battle-row reverse">
+              <div className="cross-ex-grid">
                  {/* Agent A Critiques B (Left side output, referencing right) */}
                 {debate.agentACritique && (
                   <motion.div 

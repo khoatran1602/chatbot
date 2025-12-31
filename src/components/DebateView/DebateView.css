@@ -7,6 +7,21 @@
   padding: 2rem;
   max-width: 1400px; /* Wider for split view */
   margin: 0 auto;
+  color: #ffffff; /* Enforce global white text */
+}
+
+/* Ensure all text elements inherit this color unless overridden */
+.debate-arena p, 
+.debate-arena span, 
+.debate-arena div,
+.debate-arena h1,
+.debate-arena h2,
+.debate-arena h3,
+.debate-arena h4,
+.debate-arena h5,
+.debate-arena h6,
+.debate-arena li {
+  color: inherit;
 }
 
 /* --- Header / Stats --- */
@@ -120,6 +135,13 @@
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: stretch; /* Match height */
+  gap: 2rem;
+}
+
+.cross-ex-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
   gap: 2rem;
 }
 
@@ -373,6 +395,7 @@
   background: rgba(239, 68, 68, 0.05);
   border: 1px solid rgba(239, 68, 68, 0.2);
   border-radius: 1rem;
+  color: #fff;
 }
 
 .error-icon { color: #ef4444; margin-bottom: 1rem; }
@@ -390,3 +413,69 @@
 }
 
 .retry-button:hover { background: #dc2626; }
+
+/* --- Welcome State --- */
+.arena-welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 60vh;
+  text-align: center;
+  color: #fff;
+}
+
+.vs-logo {
+  font-size: 4rem;
+  font-weight: 900;
+  font-style: italic;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+}
+
+.welcome-title {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #fff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.welcome-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 3rem;
+}
+
+.welcome-features {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.feature .icon {
+  font-size: 1.2rem;
+}
+
+.hidden {
+  visibility: hidden;
+}

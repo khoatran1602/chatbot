@@ -28,17 +28,30 @@ const ChatInput = ({
   }, [userInput, sidebarProp, userInputTextareaRef]);
 
   return (
-    <div className="bg-black w-3/4 rounded-lg absolute bottom-0 mb-5 flex items-center outline-none">
-      <textarea
-        ref={userInputTextareaRef}
-        className="bg-[#444654] rounded-lg overflow-y-auto w-full max-h-60 pt-1 py-1 pl-2 font-semibold ml-20"
-        value={userInput}
-        onChange={handleInputChange}
-        style={{ height: `${userInputHeight}px` }}
-      />
+    <div className="absolute bottom-6 left-0 right-0 mx-auto w-full max-w-4xl px-4 flex items-end gap-3 z-50">
+      <div className="flex-1 relative shadow-2xl rounded-xl bg-[#343541]">
+        <textarea
+          ref={userInputTextareaRef}
+          className="bg-transparent text-white rounded-xl overflow-hidden resize-none w-full border border-gray-600 focus:border-[#10a37f] transition-colors py-3 px-4 outline-none"
+          value={userInput}
+          onChange={handleInputChange}
+          placeholder="Enter a topic for debate..."
+          style={{ 
+            height: `${userInputHeight}px`,
+            maxHeight: '200px',
+            minHeight: '52px'
+          }}
+          rows={1}
+        />
+      </div>
       <button
         onClick={generateResponse}
-        className="bg-[#10A37F] hover:bg-[#10C17F] text-white font-bold py-2 px-4 rounded ml-3"
+        disabled={!userInput.trim()}
+        className={`p-3 rounded-xl transition-all shadow-lg flex-none ${
+          userInput.trim() 
+            ? 'bg-[#10A37F] hover:bg-[#1a7f64] text-white cursor-pointer transform hover:scale-105' 
+            : 'bg-gray-700 text-gray-500 cursor-not-allowed'
+        }`}
       >
         {SEND_ICON}
       </button>
