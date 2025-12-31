@@ -1,0 +1,403 @@
+/* Debate View Styles */
+
+.debate-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Toggle Controls */
+.debate-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.75rem;
+  backdrop-filter: blur(10px);
+}
+
+.toggle-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.toggle-button.active {
+  background: #10A37F;
+  border-color: #10A37F;
+}
+
+.toggle-icon {
+  font-size: 1rem;
+}
+
+.processing-info {
+  margin-left: auto;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Agent Cards */
+.agent-card {
+  background: linear-gradient(135deg, rgba(30, 30, 40, 0.9), rgba(40, 40, 55, 0.9));
+  border-radius: 1rem;
+  border-left: 4px solid;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.agent-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.agent-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.provider-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.agent-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.proposal-section h5,
+.list-section h5,
+.rationale-section h5 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.proposal-text {
+  color: #fff;
+  line-height: 1.6;
+}
+
+.proposal-text p {
+  margin: 0 0 0.5rem 0;
+}
+
+.list-section ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.list-section li {
+  margin-bottom: 0.25rem;
+}
+
+.list-section.risks li {
+  color: #f59e0b;
+}
+
+.rationale-text {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-style: italic;
+}
+
+/* Critique Cards */
+.critique-card {
+  background: linear-gradient(135deg, rgba(25, 25, 35, 0.9), rgba(35, 35, 50, 0.9));
+  border-radius: 1rem;
+  border-left: 4px solid;
+  padding: 1.25rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.critique-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.critique-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.critique-badges {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.assessment-badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.provider-badge-small {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.critique-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.critique-section h5 {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.critique-section p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.5;
+}
+
+.critique-section.strengths h5 {
+  color: #22c55e;
+}
+
+.critique-section.weaknesses h5 {
+  color: #f59e0b;
+}
+
+.critique-section.suggestions h5 {
+  color: #3b82f6;
+}
+
+/* Judge Card */
+.judge-card {
+  background: linear-gradient(135deg, rgba(16, 163, 127, 0.1), rgba(59, 130, 246, 0.1));
+  border: 2px solid rgba(16, 163, 127, 0.3);
+  border-radius: 1.25rem;
+  padding: 1.75rem;
+  box-shadow: 0 8px 30px rgba(16, 163, 127, 0.15);
+}
+
+.judge-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(16, 163, 127, 0.2);
+}
+
+.judge-icon {
+  font-size: 2rem;
+}
+
+.judge-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  flex: 1;
+}
+
+.judge-badge {
+  background: linear-gradient(135deg, #10A37F, #3b82f6);
+}
+
+.judge-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.final-answer {
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.75rem;
+}
+
+.answer-text {
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.answer-text p {
+  margin: 0 0 0.75rem 0;
+}
+
+.judge-section h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.judge-section ul,
+.judge-section ol {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.judge-section li {
+  margin-bottom: 0.4rem;
+  line-height: 1.5;
+}
+
+.judge-section.action-plan ol {
+  list-style-type: decimal;
+}
+
+.judge-section.remaining-risks li {
+  color: #f59e0b;
+}
+
+.judge-section.rejected li {
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: line-through;
+  text-decoration-color: rgba(239, 68, 68, 0.5);
+}
+
+/* Debate Phases */
+.debate-phase {
+  margin-bottom: 1.5rem;
+}
+
+.phase-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.phase-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: rgba(16, 163, 127, 0.2);
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: #10A37F;
+}
+
+.phase-title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.phase-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1rem;
+}
+
+/* Loading State */
+.debate-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  gap: 1rem;
+}
+
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid rgba(16, 163, 127, 0.2);
+  border-top-color: #10A37F;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+/* Error State */
+.debate-error {
+  padding: 1.5rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 0.75rem;
+  text-align: center;
+}
+
+.error-title {
+  margin: 0 0 0.5rem 0;
+  color: #ef4444;
+  font-size: 1.1rem;
+}
+
+.error-message {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .debate-container {
+    padding: 1rem;
+  }
+  
+  .phase-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .debate-controls {
+    flex-wrap: wrap;
+  }
+  
+  .processing-info {
+    width: 100%;
+    margin-left: 0;
+    text-align: center;
+  }
+}
