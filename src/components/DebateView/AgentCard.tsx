@@ -1,57 +1,81 @@
 import { AgentOutput } from '../types/debate';
 import { createSafeHtml } from '../utils/sanitize';
+import { Bot, User } from 'lucide-react';
 import './DebateView.css';
 
 interface AgentCardProps {
   agent: AgentOutput;
-  title: string;
-  accentColor: string;
+  role: string;
+  side: 'left' | 'right';
 }
 
 /**
- * Card component displaying an AI agent's proposal.
+ * Displays an agent's proposal as a "Chat Bubble" in the Arena.
  */
-const AgentCard = ({ agent, title, accentColor }: AgentCardProps) => {
+const AgentCard = ({ agent, role, side }: AgentCardProps) => {
+  const avatarClass = side === 'left' ? 'A' : 'B';
+  
+  // Parse providerModel (e.g. "openai/gpt-4")
+  const [provider, model] = agent.providerModel.split('/');
+  const providerDisplay = provider ? provider.toUpperCase() : 'UNKNOWN';
+  const modelDisplay = model || agent.providerModel;
+  
   return (
-    <div className="agent-card" style={{ borderLeftColor: accentColor }}>
-      <div className="agent-header">
-        <h4 className="agent-title">{title}</h4>
-        <span className="provider-badge" style={{ backgroundColor: accentColor }}>
-          {agent.providerModel}
-        </span>
+    <div className={`arena-card ${side}`}>
+      {/* Identity Header */}
+      <div className="card-header">
+        <div className="agent-identity">
+          <div className={`agent-avatar ${avatarClass}`}>
+            {side === 'left' ? 'A' : 'B'}
+          </div>
+          <div>
+            <div className="agent-name">{role}</div>
+            <span className="agent-model">
+              {providerDisplay} / {modelDisplay}
+            </span>
+          </div>
+        </div>
+        {side === 'left' ? <Bot size={20} color="#3b82f6" /> : <User size={20} color="#8b5cf6" />}
       </div>
-      
-      <div className="agent-content">
+
+      {/* Content Body */}
+      <div className="card-body">
+        {/* Proposal */}
         <div className="proposal-section">
-          <h5>Proposal</h5>
+          <h5>Core Proposal</h5>
           <div 
             className="proposal-text"
-            dangerouslySetInnerHTML={createSafeHtml(agent.proposal)}
+            dangerouslySetInnerHTML={createSafeHtml(agent.proposal)} 
           />
         </div>
-        
-        {agent.assumptions.length > 0 && (
-          <div className="list-section">
-            <h5>Assumptions</h5>
-            <ul>
-              {agent.assumptions.map((assumption, idx) => (
-                <li key={idx}>{assumption}</li>
-              ))}
-            </ul>
+
+        {/* Assumptions/Risks */}
+        {(agent.assumptions.length > 0 || agent.risks.length > 0) && (
+          <div className="analysis-grid">
+            {agent.assumptions.length > 0 && (
+              <div className="list-section">
+                <h5>Key Assumptions</h5>
+                <ul>
+                  {agent.assumptions.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            
+            {agent.risks.length > 0 && (
+              <div className="list-section risks">
+                <h5>Potential Risks</h5>
+                <ul>
+                  {agent.risks.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         )}
-        
-        {agent.risks.length > 0 && (
-          <div className="list-section risks">
-            <h5>Risks Identified</h5>
-            <ul>
-              {agent.risks.map((risk, idx) => (
-                <li key={idx}>{risk}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-        
+
         {agent.shortRationale && (
           <div className="rationale-section">
             <h5>Rationale</h5>
